@@ -1,0 +1,8 @@
+title: SubDownload
+description: YouTube subtitle and transcript tool
+theme: minima
+markdown: kramdown
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
