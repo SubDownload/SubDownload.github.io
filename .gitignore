@@ -1,6 +1,8 @@
-_site/
-.jekyll-cache/
-.jekyll-metadata
-Gemfile.lock
-vendor/
+node_modules/
+dist/
+.astro/
 .DS_Store
+.env
+.env.*
+!.env.example
+*.log
