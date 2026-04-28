@@ -5,7 +5,7 @@ export const GET: APIRoute = async ({ site }) => {
   const base = site!.toString().replace(/\/$/, '');
   const posts = await getCollection('blog');
 
-  const staticUrls = ['/', '/blog/'].map((p) => ({
+  const staticUrls = ['/', '/blog/', '/faq/'].map((p) => ({
     loc: `${base}${p}`,
     lastmod: new Date().toISOString(),
     changefreq: 'weekly',

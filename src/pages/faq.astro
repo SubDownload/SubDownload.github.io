@@ -1,0 +1,147 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const faqs = [
+  {
+    q: 'What is SubDownload?',
+    a: "SubDownload is an AI YouTube knowledge base. Paste any YouTube link, and you get a clean transcript, an instant AI summary, and a searchable note saved to your personal Knowledge Base. It also exposes that backend through a REST API, an MCP server, and Agent Skills, so AI agents like Claude, ChatGPT, and Cursor can read YouTube directly.",
+  },
+  {
+    q: 'Is SubDownload free?',
+    a: "Yes — there's a free tier you can use without creating an account. Paste a YouTube URL and the basic transcript and summary work right away. Heavier usage and the developer integrations (MCP, REST API) require signing in for an API key.",
+  },
+  {
+    q: 'How do I get a transcript of a YouTube video?',
+    a: "Open subdownload.com, paste the video URL into the input box, and the transcript renders alongside the player within seconds. You can copy the full transcript with one click, or export it as txt, srt, vtt, csv, json, or md.",
+  },
+  {
+    q: 'Does SubDownload work for videos without captions?',
+    a: "Yes. When YouTube hasn't generated captions for a video — Loom recordings, niche channels, fresh uploads, or talks where captions were disabled — SubDownload runs an AI transcription pass to produce text. The same paste-link → transcript flow works either way.",
+  },
+  {
+    q: 'How does SubDownload summarize YouTube videos?',
+    a: "After a transcript is available (either from YouTube's captions or from AI transcription), the text is fed into an LLM that produces a structured summary: a short overview, a section-by-section outline, and quotable spans with timestamps you can click to jump to. The summary lands in seconds, so you can decide whether the full video is worth a real watch.",
+  },
+  {
+    q: 'Can I use SubDownload with Claude, ChatGPT, or Cursor?',
+    a: 'Yes. SubDownload exposes an MCP server at api.subdownload.com/mcp that plugs into Claude Desktop, Claude Code, Cursor, and other MCP-compatible clients. Your AI agent can then fetch transcripts, list channel videos, and summarize on demand, without you copy-pasting between tabs. There is also a REST API and an Agent Skills bundle (npx @subdown/skill@latest) for clients that prefer those paths.',
+  },
+  {
+    q: 'What is an MCP server and why does it matter for YouTube?',
+    a: "MCP (Model Context Protocol) is the spec that lets a Claude or Claude-compatible client call out to external tools. Without something like MCP, an AI agent can't read YouTube — it has no browser, no audio decoder, and no caption API. An MCP server bridges that gap: the agent says 'fetch this transcript' or 'search this channel' and the server does the work and returns text the model can reason over.",
+  },
+  {
+    q: 'What languages does SubDownload support?',
+    a: 'Source-language transcripts are supported for the languages YouTube and the AI transcription layer can handle (covering most major world languages). Translation is available for cross-language workflows. The product UI itself ships in 11 languages: English, Chinese, French, Russian, Arabic, Spanish, German, Portuguese, Japanese, Hindi, and Korean.',
+  },
+  {
+    q: 'What export formats are supported for transcripts?',
+    a: 'Six formats: plain text (txt), SubRip (srt), WebVTT (vtt), comma-separated values (csv), JSON, and Markdown (md). srt and vtt include timestamps for use in subtitle workflows; csv and json are for piping into other tools; md is convenient for direct paste into note apps like Obsidian or Notion.',
+  },
+  {
+    q: 'How is SubDownload different from Otter.ai or NotebookLM?',
+    a: "Otter.ai is built around live meeting transcription; it doesn't natively pull arbitrary YouTube videos into a personal library. NotebookLM is a notes-first AI app where you paste sources for ad-hoc Q&A, but it's not a YouTube-native pipeline with a long-running searchable library plus an MCP server for agents. SubDownload is YouTube-first, with a personal knowledge base and an MCP server as core surfaces, so it composes with your existing AI workflow rather than replacing it.",
+  },
+  {
+    q: 'Do I need to sign up to try it?',
+    a: 'No. The basic transcript and summary flow on subdownload.com works without an account. Sign up once if you want to save videos to your personal Knowledge Base, get an API key for developer access, or use the MCP server.',
+  },
+  {
+    q: 'Where can I get help or report a bug?',
+    a: 'Email contact@subdownload.com — a real person reads every message. Bugs, feature requests, integration questions, and pushback on design decisions are all welcome.',
+  },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="SubDownload FAQ — YouTube Transcripts, Summaries, MCP Server"
+  description="Common questions about SubDownload: what it does, whether it's free, how AI transcription works, how to plug it into Claude, and how it compares to Otter or NotebookLM."
+>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
+
+  <section class="hero">
+    <h1>Frequently asked questions</h1>
+    <p class="lead">
+      The short answers to what SubDownload is, how the YouTube → AI →
+      knowledge-base pipeline works, and what it does that other tools
+      don't.
+    </p>
+  </section>
+
+  <section class="container faq-list">
+    {faqs.map((f) => (
+      <details class="faq-item">
+        <summary><h2>{f.q}</h2></summary>
+        <p>{f.a}</p>
+      </details>
+    ))}
+  </section>
+
+  <section class="section alt">
+    <h2>Still curious?</h2>
+    <p class="lead">
+      The launch announcement covers the why behind the product. The
+      MCP guide covers the developer integration end to end.
+    </p>
+    <div class="cta">
+      <a href="/blog/introducing-subdownload/" class="btn">Read the launch note</a>
+      <a href="/blog/claude-youtube-mcp/" class="btn-ghost">MCP setup guide &rsaquo;</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .faq-list {
+    max-width: 760px;
+    margin: 48px auto 96px;
+    padding: 0 22px;
+  }
+  .faq-item {
+    border-top: 1px solid var(--border);
+    padding: 24px 0;
+  }
+  .faq-item:last-child { border-bottom: 1px solid var(--border); }
+  .faq-item summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after {
+    content: '+';
+    color: var(--text-muted);
+    font-size: 24px;
+    font-weight: 300;
+    margin-left: 16px;
+    transition: transform 0.2s ease;
+  }
+  .faq-item[open] summary::after {
+    content: '−';
+    transform: rotate(0deg);
+  }
+  .faq-item h2 {
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    margin: 0;
+    line-height: 1.3;
+    color: var(--text);
+  }
+  .faq-item p {
+    margin: 16px 0 0;
+    color: var(--text-muted);
+    font-size: 17px;
+    line-height: 1.6;
+  }
+</style>
