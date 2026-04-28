@@ -9,6 +9,8 @@ Claude is a strong reading and reasoning partner. It will happily summarize a 40
 
 This post walks through the cleanest way I've found to fix that — connecting Claude to YouTube through an [MCP](https://modelcontextprotocol.io/) server. The specific server I'll use is [SubDownload's](https://subdownload.com?utm_source=blog&utm_medium=guide_mcp), because that's what I built; the pattern works for any compatible MCP YouTube server you'd rather use.
 
+> New to MCP? The short explainer is in [What is MCP (and why YouTube needs one)](/blog/what-is-mcp/). This post assumes you know what an MCP server is and want to get one talking to Claude.
+
 ## Why Claude can't read YouTube
 
 Claude — the model itself — works on text. It doesn't have a built-in browser, it doesn't run audio decoders, and YouTube doesn't give third parties a clean transcript API for arbitrary videos. The captions you see in the YouTube player are accessible to Google, but not generally to your AI client unless something else fetches and processes them first.

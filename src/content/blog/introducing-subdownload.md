@@ -84,7 +84,8 @@ Welcome to SubDownload.
 
 ## What else to read
 
-- [How to give Claude access to YouTube videos (via MCP)](/blog/claude-youtube-mcp/) — the developer setup walkthrough, end to end.
+- [What is MCP (and why YouTube needs one)](/blog/what-is-mcp/) — the explainer for the protocol the developer integration runs on.
+- [How to give Claude access to YouTube videos (via MCP)](/blog/claude-youtube-mcp/) — the setup walkthrough, end to end.
 - [How to summarize a long YouTube video with AI](/blog/summarize-long-youtube-video-with-ai/) — the practical paste-link → summary → triage workflow.
 - [How to build a personal YouTube knowledge base](/blog/youtube-knowledge-base/) — the PKM angle: turning what you watch into a searchable library that compounds.
 - [FAQ](/faq/) — short answers to the questions that come up before you try it.
