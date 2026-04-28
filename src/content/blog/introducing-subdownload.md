@@ -81,3 +81,10 @@ If you build something on top of it, find a bug, or want to push back on a desig
 This blog will keep the record: what's shipping, what's broken, what I'd do differently. Subscribe to the [RSS feed](/rss.xml), or check back in.
 
 Welcome to SubDownload.
+
+## What else to read
+
+- [How to give Claude access to YouTube videos (via MCP)](/blog/claude-youtube-mcp/) — the developer setup walkthrough, end to end.
+- [How to summarize a long YouTube video with AI](/blog/summarize-long-youtube-video-with-ai/) — the practical paste-link → summary → triage workflow.
+- [How to build a personal YouTube knowledge base](/blog/youtube-knowledge-base/) — the PKM angle: turning what you watch into a searchable library that compounds.
+- [FAQ](/faq/) — short answers to the questions that come up before you try it.
