@@ -27,7 +27,7 @@ export const GET: APIRoute = async ({ site }) => {
   <channel>
     <title>SubDownload Blog</title>
     <link>${base}/</link>
-    <description>Notes, guides, and updates from the team behind SubDownload.</description>
+    <description>Field notes, guides, and updates from building SubDownload — turning YouTube into searchable text for your AI agents.</description>
     <language>en-us</language>
 ${items}
   </channel>
