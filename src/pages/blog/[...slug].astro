@@ -15,11 +15,41 @@ const fmt = post.data.date.toLocaleDateString('en-US', {
   month: 'long',
   day: 'numeric',
 });
+
+const url = new URL(`/blog/${post.id}/`, Astro.site).toString();
+const ogImage = new URL('/og-default.png', Astro.site).toString();
+const description = post.data.description ?? post.data.title;
+const pageTitle = /subdownload/i.test(post.data.title)
+  ? post.data.title
+  : `${post.data.title} — SubDownload`;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.data.title,
+  description,
+  datePublished: post.data.date.toISOString(),
+  dateModified: post.data.date.toISOString(),
+  mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+  url,
+  image: ogImage,
+  author: { '@type': 'Organization', name: 'SubDownload', url: 'https://subdownload.com' },
+  publisher: {
+    '@type': 'Organization',
+    name: 'SubDownload',
+    url: 'https://subdownload.com',
+    logo: { '@type': 'ImageObject', url: new URL('/logo.svg', Astro.site).toString() },
+  },
+};
 ---
 <BaseLayout
-  title={`${post.data.title} — SubDownload`}
-  description={post.data.description ?? post.data.title}
+  title={pageTitle}
+  description={description}
+  pageType="article"
+  publishedTime={post.data.date.toISOString()}
 >
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
   <article class="post">
     <h1>{post.data.title}</h1>
     <div class="meta">
